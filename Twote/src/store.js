@@ -6,17 +6,30 @@ import thunk from "redux-thunk";
 import logger from "redux-logger";
 
 const initialState = {
-    tweets: [1, 2, 3, 4]
+  tweets: [
+    {
+      tweet: "fake tweet text 1", 
+      approved: null
+    },
+    {
+      tweet: "fake tweet text 2", 
+      approved: null
+    },
+    {
+      tweet: "fake tweet text 3", 
+      approved: null
     }
+  ]
+}
 
 export const reducer = (state=initialState, action) => {
   
-  // switch (action.type) {
-  //   case "add": {
-  //     return { ...state, addedItem: action.payload }
-  //   }
+  switch (action.type) {
+    case "APPROVE_TWEET": {
+      return { ...state, approved: action.payload }
+    }
 
-  // }
+  }
   
   return state;
 }
