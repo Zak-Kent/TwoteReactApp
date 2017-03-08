@@ -1,11 +1,12 @@
-export function approveTweetAction(tweet) {
+export function approveTweetAction(approved, idx) {
 
   return function(dispatch) {
 
     dispatch({ 
       type: "APPROVE_TWEET",
       payload: {
-        approved: 1
+        tweetIdx: idx,
+        approvedValue: approved
       }
     }) 
   }

@@ -26,7 +26,12 @@ export const reducer = (state=initialState, action) => {
   
   switch (action.type) {
     case "APPROVE_TWEET": {
-      return { ...state, approved: action.payload }
+      const newState = { ...state };
+      const tweetIdx = action.payload.tweetIdx;
+      const approvedValue = action.payload.approvedValue;
+
+      newState.tweets[tweetIdx].approved = approvedValue;
+      return newState
     }
 
   }

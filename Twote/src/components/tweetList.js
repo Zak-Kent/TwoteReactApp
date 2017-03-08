@@ -14,14 +14,9 @@ const TweetList = React.createClass({
   approveTweet(tweet, idx) {
     // send message to store that tweet is approved 
 
-    console.log(tweet)
-    const modifiedTweet = {
-      ... tweet, approved: 1
-    }
-    console.log(modifiedTweet)
-    console.log(idx)
+    const approvedValue = 1 //tweet.approved -- will need to set this later as user input changes 
 
-    this.props.dispatch()
+    this.props.dispatch(approveTweetAction(approvedValue, idx))
 
   },
 
