@@ -20,7 +20,6 @@ const TweetList = React.createClass({
 
   },
 
-
  render() {
   return (
       <div>
@@ -45,7 +44,9 @@ const TweetList = React.createClass({
 });
 
 function mapStateToProps(state) {
-  return { tweets: state.tweets };
+  return { 
+    tweets: state.tweets, 
+  };
 }
 
 export default connect(mapStateToProps)(TweetList);
