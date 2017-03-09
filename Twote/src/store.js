@@ -1,5 +1,5 @@
 import { applyMiddleware, createStore, combineReducers } from "redux";
-import { reducer as formReducer } from 'redux-form'
+// import { reducer as formReducer } from 'redux-form';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import tweetsReducer from './reducers/tweetReducer';
 
@@ -9,7 +9,7 @@ import logger from "redux-logger";
 
 export const reducers = {
   tweets: tweetsReducer,
-  form: formReducer
+  // form: formReducer
 }
 
 const reducer = combineReducers(reducers)

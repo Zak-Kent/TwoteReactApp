@@ -7,16 +7,18 @@ class TweetForm extends Component {
     return (
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="firstName">First Name</label>
-          <Field name="firstName" component="input" type="text"/>
+          <label>Approval</label>
+          <label><Field name="approval" component="input" type="radio" value="1"/> Yes</label>
+          <label><Field name="approval" component="input" type="radio" value="2"/> No</label>
         </div>
         <div>
-          <label htmlFor="lastName">Last Name</label>
-          <Field name="lastName" component="input" type="text"/>
-        </div>
-        <div>
-          <label htmlFor="email">Email</label>
-          <Field name="email" component="input" type="email"/>
+          <label>Time interval</label>
+          <Field name="timeInterval" component="select">
+          <option></option>
+            <option value="10">10 minutes</option>
+            <option value="15">15 minutes</option>
+            <option value="20">20 minutes</option>
+          </Field>
         </div>
         <button type="submit">Submit</button>
       </form>
@@ -26,7 +28,7 @@ class TweetForm extends Component {
 
 // Decorate the form component
 TweetForm = reduxForm({
-  form: 'contact' // a unique name for this form
+  form: 'tweet' // a unique name for this form
 })(TweetForm);
 
 export default TweetForm;
