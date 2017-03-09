@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { apiGetTweets, apiPatchTweet } from '../actions/apiTweets';
-// import TweetForm from './tweetUpdateForm';
 
 const TweetList = React.createClass({
+
   componentWillMount() {
     // gets initial tweets from api and add to state
     let url = 'http://localhost:8000/twitter/tweets/?approved=0';
@@ -14,7 +14,7 @@ const TweetList = React.createClass({
   approveTweet(tweet) {
     // Triggers PUT request to API that triggers change in tweets approval status
     let tweetCopy = {...tweet};
-    tweetCopy.approved = 0;
+    tweetCopy.approved = 1;
 
     let pk = tweetCopy.id;
     let putUrl = `http://localhost:8000/twitter/update/${pk}`;
@@ -38,7 +38,6 @@ const TweetList = React.createClass({
                     <p>{tweet.tweet}</p>
                     <button onClick={() => this.approveTweet(tweet)}>Approve Tweet</button>
                   </li> 
-
                 </div>
               )
             })
