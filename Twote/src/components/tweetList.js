@@ -1,25 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-
-import { approveTweetAction } from '../actions/tweetActions';
-import { apiGetTweets } from '../actions/apiGetTweets';
+import { apiGetTweets, apiPatchTweet } from '../actions/apiTweets';
 // import TweetForm from './tweetUpdateForm';
 
 const TweetList = React.createClass({
   componentWillMount() {
-    console.log("state inside TweetList")
-    console.log(this.props.tweets)
-
-    let url = 'http://localhost:8000/twitter/tweets/'
+    // gets initial tweets from api and add to state
+    let url = 'http://localhost:8000/twitter/tweets/?approved=0';
     this.props.dispatch(apiGetTweets(url))
   },
 
-  approveTweet(tweet, idx) {
-    // send message to store that tweet is approved 
-    const approvedValue = 100 //tweet.approved -- will need to set this later as user input changes 
+  approveTweet(tweet) {
+    // Triggers PUT request to API that triggers change in tweets approval status
+    let tweetCopy = {...tweet};
+    tweetCopy.approved = 0;
 
-    this.props.dispatch(approveTweetAction(approvedValue, idx))
+    let pk = tweetCopy.id;
+    let putUrl = `http://localhost:8000/twitter/update/${pk}`;
+  
+    // change record with PUT then make GET request to update tweets displayed
+    this.props.dispatch(apiPatchTweet(putUrl, tweetCopy)).then(() => {
+      let getUrl = 'http://localhost:8000/twitter/tweets/?approved=0'
+      this.props.dispatch(apiGetTweets(getUrl))
+    })
   },
 
  render() {
@@ -32,7 +36,7 @@ const TweetList = React.createClass({
                 <div key={idx}>
                   <li>
                     <p>{tweet.tweet}</p>
-                    <button onClick={() => this.approveTweet(tweet, idx)}>Approve Tweet</button>
+                    <button onClick={() => this.approveTweet(tweet)}>Approve Tweet</button>
                   </li> 
 
                 </div>
