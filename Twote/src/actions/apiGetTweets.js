@@ -15,8 +15,7 @@ export function apiGetTweets(url) {
               return res.json()
                 })
                   .then((jsonRes) => {
-                    // dispatch({type: "RECEIVE_TWEETS", payload: jsonRes.results})
-                    console.log(jsonRes);
+                    dispatch({type: "RECEIVE_TWEETS", payload: jsonRes})
                   })
                   .catch((err) => {
                     // dispatch(type: "FETCH_RACKS_ERROR", payload: err)

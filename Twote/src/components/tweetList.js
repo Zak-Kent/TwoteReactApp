@@ -10,13 +10,14 @@ const TweetList = React.createClass({
   componentWillMount() {
     console.log("state inside TweetList")
     console.log(this.props.tweets)
+
     let url = 'http://localhost:8000/twitter/tweets/'
     this.props.dispatch(apiGetTweets(url))
   },
 
   approveTweet(tweet, idx) {
     // send message to store that tweet is approved 
-    const approvedValue = 1 //tweet.approved -- will need to set this later as user input changes 
+    const approvedValue = 100 //tweet.approved -- will need to set this later as user input changes 
 
     this.props.dispatch(approveTweetAction(approvedValue, idx))
   },

@@ -1,23 +1,5 @@
-const initialState = [
-    {
-      tweet: "fake tweet text 1", 
-      approved: null
-    },
-    {
-      tweet: "fake tweet text 2", 
-      approved: null
-    },
-    {
-      tweet: "fake tweet text 3", 
-      approved: null
-    },
-    {
-      tweet: "fake tweet text 4", 
-      approved: null
-    }
-  ]
 
-export default function tweetsReducer(state=initialState, action) {   
+export default function tweetsReducer(state=[], action) {   
   switch (action.type) {
     case "APPROVE_TWEET": {
       const newState = state.slice();
@@ -26,6 +8,10 @@ export default function tweetsReducer(state=initialState, action) {
 
       newState[tweetIdx].approved = approvedValue;
       return newState;
+    }
+    case "RECEIVE_TWEETS": {
+      console.log("action inside tweetsReducer: ", action)
+      return action.payload;
     }
     default:
       return state;
