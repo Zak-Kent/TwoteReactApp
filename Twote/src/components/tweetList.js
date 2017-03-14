@@ -2,12 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { apiGetTweets, apiPatchTweet } from '../actions/apiTweets';
+import { TweetForm } from './tweetForm'; 
 
 const TweetList = React.createClass({
 
   componentWillMount() {
     // gets initial tweets from api and add to state
-    let url = 'http://localhost:8000/twitter/tweets/?approved=0';
+    let url = 'http://localhost:8000/twitter/tweets/?approved=1';
     this.props.dispatch(apiGetTweets(url))
   },
 
@@ -37,6 +38,7 @@ const TweetList = React.createClass({
                   <li>
                     <p>{tweet.tweet}</p>
                     <button onClick={() => this.approveTweet(tweet)}>Approve Tweet</button>
+                    <TweetForm />
                   </li> 
                 </div>
               )
@@ -56,3 +58,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(TweetList);
+
+
