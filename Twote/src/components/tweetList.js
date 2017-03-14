@@ -14,15 +14,13 @@ const TweetList = React.createClass({
 
   approveTweet(tweet) {
     // Triggers PUT request to API that triggers change in tweets approval status
-    let tweetCopy = {...tweet};
-    tweetCopy.approved = 1;
 
-    let pk = tweetCopy.id;
+    let pk = tweet.id;
     let putUrl = `http://localhost:8000/twitter/update/${pk}`;
   
     // change record with PUT then make GET request to update tweets displayed
-    this.props.dispatch(apiPatchTweet(putUrl, tweetCopy)).then(() => {
-      let getUrl = 'http://localhost:8000/twitter/tweets/?approved=0'
+    this.props.dispatch(apiPatchTweet(putUrl, tweet)).then(() => {
+      let getUrl = 'http://localhost:8000/twitter/tweets/?approved=1'
       this.props.dispatch(apiGetTweets(getUrl))
     })
   },
@@ -37,8 +35,7 @@ const TweetList = React.createClass({
                 <div key={idx}>
                   <li>
                     <p>{tweet.tweet}</p>
-                    <button onClick={() => this.approveTweet(tweet)}>Approve Tweet</button>
-                    <TweetForm />
+                    <TweetForm approveTweet={this.approveTweet} tweet={tweet}/>
                   </li> 
                 </div>
               )
