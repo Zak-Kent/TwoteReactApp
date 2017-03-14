@@ -1,22 +1,30 @@
 import React from 'react';
+import NumericInput from 'react-numeric-input';
+
 
 export class TweetForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.handleOptionChange = this.handleOptionChange.bind(this);
+    this.handleTimeChange = this.handleTimeChange.bind(this);
     this.handleInput = this.handleInput.bind(this);
 
     this.state = {
       approved: null,
       tweet: this.props.tweet,
-      timeInterval: 5
+      timeInterval: 15
     }
   }
 
   handleOptionChange(e) {
     console.log("my target value: ", e.target.value)
     this.setState({approved: e.target.value})
+  }
+
+  handleTimeChange(numVal) {
+    console.log("time change value: ", numVal)
+    this.setState({timeInterval: numVal})
   }
 
   handleInput(e) {
@@ -31,13 +39,20 @@ export class TweetForm extends React.Component {
     console.log("tweet copy: ", tweetCopy)
 
 
-    this.props.approveTweet(tweetCopy)
+    // this.props.approveTweet(tweetCopy)
   }
 
   render () {
     return (
       <div>
         <form>
+          <div>
+            <label>
+              <NumericInput min={0} max={60} value={this.state.timeInterval}
+              onChange={this.handleTimeChange}/>
+              Time Delay
+            </label>
+          </div>
           <div>
             <label>
               <input type="radio" value="1" checked={this.state.approved==="1"}
