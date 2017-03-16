@@ -15,17 +15,11 @@ class App extends Component {
     this.displayTweets = this.displayTweets.bind(this);
   }
 
-  // make method that sets up initial api call 
   displayTweets(approveValue) {
-    // should be 1 or 0
-
-    console.log("inside app method", approveValue)
     let val = approveValue;
     let url = `http://localhost:8000/twitter/tweets/?approved=${val}`;
-    console.log(url);
 
     this.props.dispatch(apiGetTweets(url))
-
   }
 
   render() {
@@ -47,4 +41,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(App);
-// export default App;
