@@ -27,7 +27,7 @@ export function apiGetTweets(url) {
 
 export function apiPutTweet(url, tweetObj) {
 
-  console.log("tweetObj inside apiPatchTweet: ", tweetObj)
+  console.log("tweetObj inside apiPutTweet: ", tweetObj)
   return function(dispatch) {
     return fetch(url, {
       method: 'PUT', 
