@@ -25,7 +25,7 @@ export function apiGetTweets(url) {
   }
 }
 
-export function apiPatchTweet(url, tweetObj) {
+export function apiPutTweet(url, tweetObj) {
 
   console.log("tweetObj inside apiPatchTweet: ", tweetObj)
   return function(dispatch) {
@@ -40,7 +40,7 @@ export function apiPatchTweet(url, tweetObj) {
         return res.json()
       })
         .then((jsonRes) => {
-          console.log("response from patch: ", jsonRes)
+          console.log("response from PUT: ", jsonRes)
         })
         .catch((err) => {
           console.log(err);

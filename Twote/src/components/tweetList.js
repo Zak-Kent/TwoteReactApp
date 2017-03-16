@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { apiGetTweets, apiPatchTweet } from '../actions/apiTweets';
+import { apiGetTweets, apiPutTweet } from '../actions/apiTweets';
 import { TweetForm } from './tweetForm'; 
 
 const TweetList = React.createClass({
 
   componentWillMount() {
     // gets initial tweets from api and add to state
-    let url = 'http://localhost:8000/twitter/tweets/?approved=1';
+    let url = 'http://localhost:8000/twitter/tweets/?approved=0';
     this.props.dispatch(apiGetTweets(url))
   },
 
@@ -19,8 +19,8 @@ const TweetList = React.createClass({
     let putUrl = `http://localhost:8000/twitter/update/${pk}`;
   
     // change record with PUT then make GET request to update tweets displayed
-    this.props.dispatch(apiPatchTweet(putUrl, tweet)).then(() => {
-      let getUrl = 'http://localhost:8000/twitter/tweets/?approved=1'
+    this.props.dispatch(apiPutTweet(putUrl, tweet)).then(() => {
+      let getUrl = 'http://localhost:8000/twitter/tweets/?approved=0'
       this.props.dispatch(apiGetTweets(getUrl))
     })
   },
