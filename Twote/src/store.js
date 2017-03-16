@@ -9,7 +9,6 @@ import logger from "redux-logger";
 
 export const reducers = {
   tweets: tweetsReducer,
-  // form: formReducer
 }
 
 const reducer = combineReducers(reducers)

@@ -18,19 +18,19 @@ export class TweetForm extends React.Component {
   }
 
   handleOptionChange(e) {
-    console.log("my target value: ", e.target.value)
+    // console.log("my target value: ", e.target.value)
     this.setState({approved: e.target.value})
   }
 
   handleTimeChange(numVal) {
-    console.log("time change value: ", numVal)
+    // console.log("time change value: ", numVal)
     this.setState({timeInterval: numVal})
   }
 
   handleInput(e) {
     e.preventDefault();
-    console.log("state inside of handleInput: ", this.state)
-    console.log("value of func passed down: ", this.props.approveTweet)
+    // console.log("state inside of handleInput: ", this.state)
+    // console.log("value of func passed down: ", this.props.approveTweet)
     
     let tweetCopy = {...this.props.tweet}
     tweetCopy.approved = this.state.approved
@@ -38,8 +38,8 @@ export class TweetForm extends React.Component {
 
     console.log("tweet copy: ", tweetCopy)
 
-
-    // this.props.approveTweet(tweetCopy)
+    // this calls the PUT action and changes tweet on the server
+    this.props.approveTweet(tweetCopy)
   }
 
   render () {
